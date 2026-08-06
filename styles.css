@@ -130,28 +130,10 @@ body.nav-open .site-header {
 }
 
 .brand-mark {
-  position: relative;
   display: block;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-}
-
-.brand-mark i {
-  position: absolute;
-  top: 14px;
-  left: 6px;
-  display: block;
-  width: 16px;
-  height: 1px;
-  background: var(--cyan);
-  transform: rotate(45deg);
-}
-
-.brand-mark i:last-child {
-  transform: rotate(-45deg);
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
 }
 
 .brand-name {
@@ -1690,14 +1672,9 @@ body.nav-open .site-header {
   }
 
   .brand-mark {
-    width: 28px;
-    height: 28px;
-    flex-basis: 28px;
-  }
-
-  .brand-mark i {
-    top: 13px;
-    left: 5px;
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
   }
 
   .brand-name {
