@@ -9,6 +9,7 @@
       content="xnan.cn 为企业提供 AI Agent 咨询、定制开发、系统集成与私有化部署服务，覆盖知识库、客服、销售、运营和流程自动化。"
     />
     <meta name="theme-color" content="#071012" />
+    <meta name="xnan-chat-api" content="" />
     <meta property="og:title" content="xnan.cn | 企业级 AI Agent 定制服务" />
     <meta
       property="og:description"
@@ -21,6 +22,8 @@
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="./styles.css" />
     <script src="./script.js" defer></script>
+    <script src="./data/customer-knowledge-base.js" defer></script>
+    <script src="./chatbot.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -336,5 +339,62 @@
         </a>
       </div>
     </footer>
+
+    <div class="chat-widget" data-chat-widget>
+      <button
+        class="chat-launcher has-notification"
+        type="button"
+        aria-label="打开智能客服"
+        aria-controls="xnan-chat-panel"
+        aria-expanded="false"
+        data-chat-launcher
+      >
+        <img src="./assets/logo-mark.svg" alt="" width="36" height="36" />
+        <span><strong>智能客服</strong><small>KNOWLEDGE ONLINE</small></span>
+        <i aria-hidden="true"></i>
+      </button>
+
+      <section
+        class="chat-panel"
+        id="xnan-chat-panel"
+        role="dialog"
+        aria-labelledby="xnan-chat-title"
+        data-chat-panel
+        hidden
+      >
+        <header class="chat-panel-header">
+          <div class="chat-agent-identity">
+            <img src="./assets/logo-mark.svg" alt="" width="34" height="34" />
+            <div><h2 id="xnan-chat-title">智能客服</h2><p><i aria-hidden="true"></i>服务在线</p></div>
+          </div>
+          <div class="chat-panel-tools">
+            <button type="button" aria-label="清空对话" title="清空对话" data-chat-reset>↻</button>
+            <button type="button" aria-label="关闭智能客服" title="关闭" data-chat-close>×</button>
+          </div>
+        </header>
+
+        <div class="chat-model-strip">
+          <span>XNAN AGENT / CUSTOMER SERVICE</span>
+          <strong data-chat-model-status>KNOWLEDGE BASE ONLINE</strong>
+        </div>
+
+        <div class="chat-messages" role="log" aria-live="polite" aria-relevant="additions" data-chat-messages></div>
+
+        <div class="chat-suggestions" aria-label="推荐问题" data-chat-suggestions></div>
+
+        <form class="chat-composer" data-chat-form>
+          <label class="visually-hidden" for="xnan-chat-input">输入你的问题</label>
+          <textarea
+            id="xnan-chat-input"
+            rows="2"
+            maxlength="500"
+            placeholder="描述你的业务场景…"
+            data-chat-input
+          ></textarea>
+          <span class="chat-character-count" data-chat-count>0 / 500</span>
+          <button type="submit" aria-label="发送消息" title="发送消息" data-chat-submit>↗</button>
+        </form>
+      </section>
+    </div>
   </body>
 </html>

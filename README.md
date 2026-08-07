@@ -17,6 +17,39 @@ python3 -m http.server 4173
 - `index.html`：页面内容与结构
 - `styles.css`：视觉系统与响应式布局
 - `script.js`：导航、首屏视差和复制交互
+- `chatbot.js`：知识检索、模型 Provider、消息状态与客服交互
+- `data/customer-knowledge-base.js`：可维护的客户知识库内容
 - `assets/`：网站图片资源
 - `design/`：视觉方向与设计说明
 - `preview/`：桌面与移动端整页预览
+
+## 智能客服
+
+客服默认使用本地知识库回答，因此直接打开 `index.html` 也可以工作。真实模型通过同源后端代理接入，不要在 HTML 或浏览器脚本中放置模型 API Key。
+
+在 `index.html` 中设置接口地址：
+
+```html
+<meta name="xnan-chat-api" content="/api/chat" />
+```
+
+前端会发送：
+
+```json
+{
+  "message": "客户问题",
+  "history": [{ "role": "user", "content": "..." }],
+  "context": [{ "id": "...", "title": "...", "category": "...", "answer": "..." }]
+}
+```
+
+后端返回：
+
+```json
+{
+  "answer": "模型回答",
+  "sources": ["引用的知识条目"]
+}
+```
+
+远程接口超时、报错或返回无效内容时，客服会自动回退到本地知识库。
