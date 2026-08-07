@@ -1,0 +1,25 @@
+# Place limit_req_zone inside the nginx http {} block.
+limit_req_zone $binary_remote_addr zone=xnan_chat:10m rate=12r/m;
+
+server {
+    listen 443 ssl http2;
+    server_name chat-api.xnan.cn;
+
+    # Replace these paths with the certificate installed on the server.
+    ssl_certificate /etc/letsencrypt/live/chat-api.xnan.cn/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/chat-api.xnan.cn/privkey.pem;
+
+    client_max_body_size 32k;
+
+    location / {
+        limit_req zone=xnan_chat burst=6 nodelay;
+        proxy_pass http://127.0.0.1:8787;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 35s;
+    }
+}

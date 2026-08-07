@@ -19,6 +19,7 @@ python3 -m http.server 4173
 - `script.js`：导航、首屏视差和复制交互
 - `chatbot.js`：知识检索、模型 Provider、消息状态与客服交互
 - `data/customer-knowledge-base.js`：可维护的客户知识库内容
+- `server/`：阿里云函数计算与 Nginx/Node.js 共用的模型代理
 - `assets/`：网站图片资源
 - `design/`：视觉方向与设计说明
 - `preview/`：桌面与移动端整页预览
@@ -53,3 +54,5 @@ python3 -m http.server 4173
 ```
 
 远程接口超时、报错或返回无效内容时，客服会自动回退到本地知识库。
+
+服务端默认使用 `gpt-5.6-luna`，部署和环境变量说明见 `server/README.md`。模型密钥必须通过部署平台的 Secret 或环境变量提供，不能提交到仓库。
